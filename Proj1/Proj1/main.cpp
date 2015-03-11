@@ -2,7 +2,7 @@
 //  main.cpp
 //  Proj1
 //
-//  Created by Jack Moore on 3/10/15.
+//  Created by Jack Moore and Julia Calandro on 3/10/15.
 //  Copyright (c) 2015 Jack Moore. All rights reserved.
 //
 
