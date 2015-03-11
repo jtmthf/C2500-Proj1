@@ -7,14 +7,16 @@
 //
 
 #ifndef Proj1_MergeSort_h
+#include <vector>
 
 template <class T>
 class MergeSort<T>
 {
-  
 public:
-  
-}
+  void sort(std::vector<T> & array, const int begin, const int end);
+
+  void merge(std::vector<T> & array, const int begin, const int middle, const int end);
+};
 
 #include "MergeSort.hpp"
 #define Proj1_MergeSort_h
