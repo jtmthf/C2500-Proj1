@@ -20,6 +20,8 @@ public:
 
 	T right(const int i);	
 
+	bool isMaxHeap(const std::vector<T> array, const int i);
+
 	void max_heapify(std::vector<T> & array, const int i);
 
 	void build_max_heap(std::vector<T> & array);

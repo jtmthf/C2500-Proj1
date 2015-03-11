@@ -22,6 +22,22 @@ T HeapSort<T>::right(const int i)
 }
 
 template <class T>
+bool HeapSort<T>::isMaxHeap(const std::vector<T> array, const int i)
+{
+	for(i; i < (array.size())/2; i++)
+	{
+		if(array[2i] > array[i] || array[2i+1] > array[i])
+			return false;
+	}
+	int k = array.size()/2;
+	if(array[k] < array(array.size()))
+		return false;
+	if(2k < array.size() && array[k] < array[array.size() - 1])
+		return false;
+	return true;
+}
+
+template <class T>
 void HeapSort<T>::max_heapify(std::vector<T> & array, const int i)
 {
 	int left = left(i);
@@ -54,16 +70,21 @@ void HeapSort<T>::max_heapify(std::vector<T> & array, const int i)
 template <class T>
 void HeapSort<T>::build_max_heap(std::vector<T> & array)
 {
+	//array(1..array.size() is an array of numbers)
 	heap_size = array.size();
-	// i>=1 ? or i>1 ?
 	for(int i = (array.size())/2; i >= 0 ; i--)
 	{
+		//Invariant: array(i+1..array.size()) satisfies the MaxHeap property
+		//assert(isMaxHeap(array, i+1));
 		max_heapify(array, i);
+		//Invariant: array(i..array.size()) satisfies the MaxHeap property
+		//assert(isMaxHeap(array, i));		
 	}
+	//Post Condition: All elements in array(1..array.end()) satisfy the MaxHeap property.
+	//Therefore, A(1..array.end()) is a MaxHeap.
 	return;
 }
 
-//NEEDS INVARIANTS AND ASSERTS
 template <class T>
 void HeapSort<T>::heap_sort(std::vector<T> & array)
 {
@@ -71,15 +92,17 @@ void HeapSort<T>::heap_sort(std::vector<T> & array)
 	build_max_heap(array);
 	for(int i = array.size(); i > 0; i--)
 	{
-		//Invariant: array(1..k) is max heap, and array(k+1..n) is sorted
-		//assert(is_sorted(array, k+1, n))
+		//Invariant: array(1..i) is max heap, and array(i+1..array.end()) is sorted
+		//assert(is_sorted(array, array[i+1], array.end()));
 		int temp = array[i];
 		array[i] = array[0];
 		array[0] = temp;
 		heap_size = heap_size - 1;
 		max_heapify(array, 0);
-		//Invariant: array(1..k-1) is max heap
+		//Invariant: array(1..i-1) is max heap, and array(k..array.end()) is sorted
+		//assert(is_sorted(array, array[i], array.end()));
 	}
+	//Post Condition: array(1..array.end()) is sorted
 	return;
 }
 
