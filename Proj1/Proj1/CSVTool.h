@@ -48,6 +48,10 @@ public:
     {
       file.m_outputFile << file.m_separ;
     }
+    else
+    {
+      file.firstColumn = false;
+    }
     file.m_outputFile << text;
     
     return file;

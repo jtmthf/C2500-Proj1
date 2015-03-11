@@ -14,11 +14,13 @@ oCSVFile::oCSVFile(const std::string fileName, const std::string delim, const ch
   m_outputFile.open(fileName);
   m_delim = delim;
   m_separ = separ;
+  firstColumn = true;
 }
 
 void oCSVFile::newLine()
 {
   m_outputFile << m_delim;
+  firstColumn = true;
 }
 
 void oCSVFile::close()
